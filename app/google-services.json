@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "762133704052",
+    "project_id": "runaapp-651b2",
+    "storage_bucket": "runaapp-651b2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762133704052:android:10f7cea7dbce19ba5c9021",
+        "android_client_info": {
+          "package_name": "com.grsu.runa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_YBvHt38jKQyUxL1KsXmhM44QHYazvEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
