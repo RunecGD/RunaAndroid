@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item
+    <item
+        android:id="@+id/news_feed"
+        android:title="Лента"
+        android:icon="@drawable/baseline_dynamic_feed_24"/>
+    <item
+        android:id="@+id/students"
+        android:title="Студенты"
+        android:icon="@drawable/students_24"/>
+    <item
     android:id="@+id/chats"
     android:title="Чаты"
     android:icon="@drawable/baseline_chat_bubble_outline_24"
@@ -10,16 +18,8 @@
         android:title="Друзья"
         android:icon="@drawable/friend_24"/>
     <item
-        android:id="@+id/students"
-        android:title="Студенты"
-        android:icon="@drawable/students_24"/>
-    <item
         android:id="@+id/profile"
         android:title="Профиль"
         android:icon="@drawable/baseline_emoji_people_24"/>
-    <item
-        android:id="@+id/news_feed"
-        android:title="Лента"
-        android:icon="@drawable/baseline_dynamic_feed_24"/>
 
 </menu>
