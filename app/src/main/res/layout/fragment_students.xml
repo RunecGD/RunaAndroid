@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".buttonNav.students.StudentsFragment">
+    tools:context=".buttonNav.students.StudentsFragment"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
    <androidx.recyclerview.widget.RecyclerView
        android:layout_width="match_parent"
        android:layout_height="match_parent"
