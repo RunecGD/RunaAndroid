@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
+import com.grsu.runa.ChatActivity;
 import com.grsu.runa.R;
 
 import java.util.ArrayList;
@@ -60,6 +61,11 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatViewHolder> {
                         }
                     }
                 });
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(), ChatActivity.class);
+            intent.putExtra("chatId", chats.get(position).getChat_id());
+            holder.itemView.getContext().startActivity(intent);
+        });
     }
 
     @Override

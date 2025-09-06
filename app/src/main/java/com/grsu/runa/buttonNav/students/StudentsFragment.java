@@ -45,8 +45,9 @@ public class StudentsFragment extends Fragment {
 
                     String username = userSnapshot.child("username").getValue().toString();
                     String profileImage = userSnapshot.child("profileImage").getValue().toString();
+                    String uid=userSnapshot.getKey();
 
-                    users.add(new User(username, profileImage));
+                    users.add(new User(username, profileImage, uid));
                 }
 
                 binding.usersRv.setLayoutManager(new LinearLayoutManager(getContext()));
