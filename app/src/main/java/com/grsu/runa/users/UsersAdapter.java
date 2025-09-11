@@ -1,5 +1,6 @@
 package com.grsu.runa.users;
 
+import android.content.Intent;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import com.grsu.runa.R;
+import com.grsu.runa.UserActivity;
 import com.grsu.runa.utils.ChatUtil;
 
 public class UsersAdapter extends RecyclerView.Adapter<UserViewHolder>{
@@ -41,8 +43,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UserViewHolder>{
         if (!user.profileImage.isEmpty()) {
             Glide.with(holder.itemView.getContext()).load(user.profileImage).into(holder.profileImage_iv);
         }
+        Intent intent = new Intent(holder.itemView.getContext(), UserActivity.class);
+        intent.putExtra("userId", user.uid);
         holder.itemView.setOnClickListener(view -> {
-            ChatUtil.createChat(user);
+            holder.itemView.getContext().startActivity(intent);
+            //ChatUtil.createChat(user);
         });
     }
 
@@ -50,9 +55,5 @@ public class UsersAdapter extends RecyclerView.Adapter<UserViewHolder>{
     public int getItemCount() {
         return users.size();
     }
-    private void createChat(User user){
-        HashMap<String, String> chatInfo= new HashMap<>();
-        chatInfo.put("user1", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
-        chatInfo.put("user2", user.uid);
-    }
+
 }

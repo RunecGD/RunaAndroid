@@ -18,7 +18,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.grsu.runa.LoginActivity;
-import com.grsu.runa.databinding.FragmentChatsBinding;
 import com.grsu.runa.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {

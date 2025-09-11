@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".buttonNav.friends.FriendFragment">
+    tools:context=".buttonNav.friends.FriendFragment"
+    android:layout_marginTop="10dp"
+    android:fitsSystemWindows="true">
     <TextView
         android:id="@+id/textView2"
         android:layout_width="56dp"

@@ -1,6 +1,10 @@
 package com.grsu.runa;
 
+import static android.content.Intent.getIntent;
+
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,16 +31,42 @@ import java.util.Objects;
 
 public class ChatActivity extends AppCompatActivity {
     private ActivityChatBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityChatBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        ImageButton backButton = findViewById(R.id.back_from_chat);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         String chatId = getIntent().getStringExtra("chatId");
+        String uid = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        FirebaseDatabase.getInstance("https://runaapp-651b2-default-rtdb.europe-west1.firebasedatabase.app").getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                DataSnapshot chatSnapshot = snapshot.child("Chats").child(chatId);
+                String userId1 = Objects.requireNonNull(chatSnapshot.child("user1").getValue()).toString();
+                String userId2 = Objects.requireNonNull(chatSnapshot.child("user2").getValue()).toString();
+
+                String chatUserId = (uid.equals(userId1)) ? userId2 : userId1;
+
+                binding.chatName.setText(snapshot.child("Users").child(chatUserId).child("username").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         loadMessages(chatId);
         binding.sendMessageBtn.setOnClickListener(v -> {
             String message = binding.messageEt.getText().toString();
-            if (message.isEmpty()){
+            if (message.isEmpty()) {
                 Toast.makeText(this, "Message field cannot be empty", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -48,9 +78,10 @@ public class ChatActivity extends AppCompatActivity {
             sendMessage(chatId, message, date);
         });
     }
-    private void loadMessages(String chatId){
 
-        if (chatId==null) return;
+    private void loadMessages(String chatId) {
+
+        if (chatId == null) return;
 
         FirebaseDatabase.getInstance("https://runaapp-651b2-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("Chats")
                 .child(chatId).child("messages").addValueEventListener(new ValueEventListener() {
@@ -59,7 +90,7 @@ public class ChatActivity extends AppCompatActivity {
                         if (!snapshot.exists()) return;
 
                         List<Message> messages = new ArrayList<>();
-                        for (DataSnapshot messageSnapshot : snapshot.getChildren()){
+                        for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
                             String messageId = messageSnapshot.getKey();
                             String ownerId = messageSnapshot.child("ownerId").getValue().toString();
                             String text = messageSnapshot.child("text").getValue().toString();
@@ -77,8 +108,9 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void sendMessage(String chatId, String message, String date){
-        if (chatId==null) return;
+
+    private void sendMessage(String chatId, String message, String date) {
+        if (chatId == null) return;
 
         HashMap<String, String> messageInfo = new HashMap<>();
         messageInfo.put("text", message);

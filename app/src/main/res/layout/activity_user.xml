@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    tools:context=".UserActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:id="@+id/profile_image_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/baseline_face_retouching_natural_24"
+        />
+
+    <TextView
+        android:id="@+id/student_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image_view"
+        tools:text="Username" />
+
+    <ImageButton
+        android:id="@+id/add_friend"
+        android:layout_width="128dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="200dp"
+        android:background="@color/white"
+        android:src="@drawable/baseline_group_add_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/chat_with_user"
+        android:layout_width="128dp"
+        android:layout_height="45dp"
+        android:background="@color/white"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/baseline_chat_bubble_outline_24"
+        app:layout_constraintStart_toEndOf="@+id/add_friend"
+        app:layout_constraintTop_toBottomOf="@+id/student_username" />
+
+    <ImageButton
+        android:id="@+id/user_friend"
+        android:layout_width="128dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/white"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/friend_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/chat_with_user"
+        app:layout_constraintTop_toBottomOf="@+id/student_username" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
